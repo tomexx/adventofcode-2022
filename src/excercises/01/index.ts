@@ -1,4 +1,6 @@
 import { open } from "node:fs/promises"
+import test from "node:test"
+import assert from "node:assert/strict"
 
 let filehandle
 try {
@@ -24,6 +26,11 @@ try {
   const sortedResultArray = resultArray.sort((a, b) => b - a)
   const result2 = sortedResultArray[0]! + sortedResultArray[1]! + sortedResultArray[2]!
   console.log(result2)
+
+  test("synchronous passing test", (t) => {
+    // This test passes because it does not throw an exception.
+    assert.strictEqual(1, 1)
+  })
 } finally {
   await filehandle?.close()
 }
